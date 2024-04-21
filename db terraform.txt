@@ -1,0 +1,35 @@
+# db instance
+
+resource "aws_db_instance" "database" {
+  allocated_storage    = 10
+  db_name              = var.db_name
+  engine               = "mysql"
+  engine_version       = "5.7"
+  instance_class       = var.instance_type_db
+  username             = var.db_username
+  password             = var.db_password
+  parameter_group_name = "default.mysql5.7"
+  skip_final_snapshot  = true
+  multi_az = true
+  vpc_security_group_ids = [aws_security_group.db-sg.id]
+  db_subnet_group_name = aws_db_subnet_group.db-subnet-group.name
+}
+
+
+variable "database" {
+  type = object({
+    db_name = string,
+    instance_type_db = string
+    username = string,
+    password = string
+  })
+}
+
+
+
+database = {
+  "db_name" : "web-asg"
+  "instance_type_db" : "ELB"
+  "value" : "terraform-asg"
+  "propagate_at_launch" : true
+}
