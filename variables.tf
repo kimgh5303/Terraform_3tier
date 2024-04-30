@@ -11,6 +11,7 @@ variable "tags" {
 }
 
 # VPC----------------------------------------------------
+# VPC, Subnet, IGW, NGW
 # 가용 영역
 variable "az_list" {
     type = list(string)
@@ -25,6 +26,8 @@ variable "vpc_cidr" {
 variable "public_subnets" {}
 
 # Private Subnet 목록
-variable "private_subnets" {}
+variable "web_subnets" {}
+variable "app_subnets" {}
 
-# VPC, Subnet ----------------------------------------------
+# route table cidr_block -> "0.0.0.0/0"
+variable "rt_cidr_block" {}

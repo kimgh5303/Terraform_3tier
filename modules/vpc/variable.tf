@@ -12,4 +12,8 @@ variable "vpc_cidr" {}
 variable "public_subnets" {}
 
 # Private Subnet list
-variable "private_subnets" {}
+variable "web_subnets" {}
+variable "app_subnets" {}
+
+# public route table cidr_block
+variable "rt_cidr_block" {}
