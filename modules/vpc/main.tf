@@ -4,9 +4,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_support   = true
   enable_dns_hostnames = true
 
-  tags = {
-    name = var.tags
-  }
+  tags = var.tags
 }
 
 # Public Subnets
@@ -20,7 +18,7 @@ resource "aws_subnet" "public" {
     {
       Name = format(
         "%s-pub-sub-%s",
-        var.tags,
+        var.tags["name"],
         element(split("_", each.key), 2)
       )
     },
@@ -39,7 +37,7 @@ resource "aws_subnet" "private" {
     {
       Name = format(
         "%s-pri-sub-%s",
-        var.tags,
+        var.tags["name"],
         element(split("_", each.key), 2)
       )
     },

@@ -2,12 +2,15 @@
 region = "us-west-1"
 
 # 공통 태그 이니셜
-tags = "owner:kgh"
+tags = {
+  owner = "owner"
+  name = "kgh"
+}
 
 # VPC----------------------------------------------------
 az_list = [
-  region+"a",
-  region+"b"
+  "us-west-1a",
+  "us-west-1b"
 ]
 
 vpc_cidr = "10.10.0.0/16"
@@ -15,11 +18,11 @@ vpc_cidr = "10.10.0.0/16"
 # Public Subnets 정의
 public_subnets = {
   web_sub_1a = {
-    zone = az_lsit[0]
+    zone = "us-west-1a"
     cidr = "10.10.1.0/24"
   },
   web_sub_1b = {
-    zone = az_lsit[1]
+    zone = "us-west-1b"
     cidr = "10.10.2.0/24"
   }
 }
@@ -27,11 +30,11 @@ public_subnets = {
 # private Subnets 정의
 private_subnets = {
   app_sub_1a = {
-    zone = az_lsit[0]
+    zone = "us-west-1a"
     cidr = "10.10.3.0/24"
   },
   app_sub_1b = {
-    zone = az_lsit[1]
+    zone = "us-west-1b"
     cidr = "10.10.4.0/24"
   }
 }

@@ -6,7 +6,7 @@ variable "region" {
 
 # 공통 태그 이니셜
 variable "tags" {
-    type = string
+    type = map(string)
     description = "사용 구분자 태그"
 }
 
