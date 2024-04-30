@@ -4,34 +4,27 @@ variable "region" {
   type    = string
 }
 
-# 프로젝트 이름
-variable "name" {
-    type = string
-    description = "이름 앞에 들어갈 프로젝트 구분"
-}
-
-# Tags
+# 공통 태그 이니셜
 variable "tags" {
+    type = string
     description = "사용 구분자 태그"
 }
 
-# Availability Zones
-variable "az_names" {
+# VPC----------------------------------------------------
+# 가용 영역
+variable "az_list" {
     type = list(string)
 }
-
-# VPC, Subnet ----------------------------------------------
-# VPC
-variable "vpc" {
-    type = object({
-        vpc_name = string
-        vpc_cidr = string
-    })
+# VPC CIDR
+variable "vpc_cidr" {
+    type = string
     description = "VPC 구성"
 }
 
-# Public Subnet list
+# Public Subnet 목록
 variable "public_subnets" {}
 
-# Private Subnet list
+# Private Subnet 목록
 variable "private_subnets" {}
+
+# VPC, Subnet ----------------------------------------------
