@@ -50,5 +50,54 @@ app_subnets = {
   }
 }
 
-# route table cidr_block 지정 -> "0.0.0.0/0"
-rt_cidr_block = "0.0.0.0/0"
+# cidr_block 지정 -> "0.0.0.0/0"
+cidr_blocks = "0.0.0.0/0"
+
+# SG----------------------------------------------------
+ingress_rule = {
+  http = {
+    description = "HTTP from Internet"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  },
+  https = {
+    description = "HTTPS from Internet"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ssh = {
+    description = "SSH From Anywhere or Your-IP"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+egress_rule = {
+  from_port   = 0
+  to_port     = 0
+  protocol    = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+
+# ALB----------------------------------------------------
+tg_set = {
+  port = 80
+  protocol = "HTTP"
+}
+
+health_checks = {
+  default = {
+    path                 = "/"
+    matcher              = "200-299"
+    interval             = 5
+    timeout              = 3
+    healthy_threshold    = 3
+    unhealthy_threshold  = 5
+  }
+}

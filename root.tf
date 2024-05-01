@@ -16,5 +16,28 @@ module "vpc" {
   public_subnets  = var.public_subnets
   web_subnets = var.web_subnets
   app_subnets = var.app_subnets
-  rt_cidr_block = var.rt_cidr_block
+  rt_cidr_blocks = var.cidr_blocks
+}
+
+module "sg" {
+  source = "./modules/sg"
+  tags     = var.tags
+  vpc_id   = module.vpc.vpc_id
+
+  ingress_rule = var.ingress_rule
+  egress_rule = var.egress_rule
+}
+
+module "alb" {
+  source = "./modules/alb"
+  tags     = var.tags
+  vpc_id   = module.vpc.vpc_id
+
+  alb_web_sg = module.sg.alb_web_sg
+  alb_app_sg = module.sg.alb_app_sg
+  public_subnet_ids = module.vpc.public_subnet_ids
+  app_subnet_ids = module.vpc.app_subnet_ids
+
+  tg_set = var.tg_set
+  health_checks = var.health_checks
 }

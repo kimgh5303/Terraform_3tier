@@ -4,9 +4,9 @@ output "vpc_id" {
 } 
 
 output "public_subnet_ids" {
-  value = values(aws_subnet.public_subnets)[*].id
+  value = {for k, subnet in aws_subnet.public_subnets : k => subnet.id}
 }
 
-output "web_subnet_ids" {
-  value = values(aws_subnet.web_subnets)[*].id
+output "app_subnet_ids" {
+  value = {for k, subnet in aws_subnet.app_subnets : k => subnet.id}
 }

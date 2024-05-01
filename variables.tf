@@ -29,5 +29,23 @@ variable "public_subnets" {}
 variable "web_subnets" {}
 variable "app_subnets" {}
 
-# route table cidr_block -> "0.0.0.0/0"
-variable "rt_cidr_block" {}
+# cidr_block 지정 -> "0.0.0.0/0"
+variable "cidr_blocks" {}
+
+# SG----------------------------------------------------
+variable "ingress_rule" {}
+variable "egress_rule" {}
+
+# ALB----------------------------------------------------
+variable "tg_set" {}
+variable "health_checks" {
+  type = map(object({
+    path                 = string
+    matcher              = string
+    interval             = number
+    timeout              = number
+    healthy_threshold    = number
+    unhealthy_threshold  = number
+  }))
+  description = "Health check settings for the load balancer target group"
+}

@@ -16,4 +16,4 @@ variable "web_subnets" {}
 variable "app_subnets" {}
 
 # public route table cidr_block
-variable "rt_cidr_block" {}
+variable "rt_cidr_blocks" {}
