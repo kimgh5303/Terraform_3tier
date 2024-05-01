@@ -50,5 +50,5 @@ app_subnets = {
   }
 }
 
-# route table cidr_block -> "0.0.0.0/0"
+# route table cidr_block 지정 -> "0.0.0.0/0"
 rt_cidr_block = "0.0.0.0/0"

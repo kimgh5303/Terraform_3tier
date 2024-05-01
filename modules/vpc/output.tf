@@ -10,7 +10,3 @@ output "public_subnet_ids" {
 output "web_subnet_ids" {
   value = values(aws_subnet.web_subnets)[*].id
 }
-
-output "app_subnet_ids" {
-  value = values(aws_subnet.app_subnets)[*].id
-}
