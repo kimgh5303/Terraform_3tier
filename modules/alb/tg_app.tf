@@ -1,7 +1,7 @@
 resource "aws_lb_target_group" "tg_app" {
-  name     = "tg-app"
-  port     = var.tg_set["port"]
-  protocol = var.tg_set["protocol"]
+  name     = var.tg_app
+  port     = 80
+  protocol = "HTTP"
   vpc_id   = var.vpc_id
 
   dynamic "health_check" {
@@ -15,5 +15,20 @@ resource "aws_lb_target_group" "tg_app" {
       healthy_threshold    = health_check.value.healthy_threshold
       unhealthy_threshold  = health_check.value.unhealthy_threshold
     }
+  }
+  
+  tags = {
+    Name = format("%s-tg-app", var.tags["name"])
+  }
+}
+
+resource "aws_lb_listener" "listener_http_app" {
+  load_balancer_arn = aws_lb.alb_app.arn
+  port     = 80
+  protocol = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.tg_app.arn
   }
 }

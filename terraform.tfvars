@@ -86,11 +86,7 @@ egress_rule = {
 }
 
 # ALB----------------------------------------------------
-tg_set = {
-  port = 80
-  protocol = "HTTP"
-}
-
+# Web, App health_check 
 health_checks = {
   default = {
     path                 = "/"
@@ -101,3 +97,6 @@ health_checks = {
     unhealthy_threshold  = 5
   }
 }
+
+tg_web = "tg-web"
+tg_app = "tg-app"

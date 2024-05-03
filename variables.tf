@@ -49,3 +49,6 @@ variable "health_checks" {
   }))
   description = "Health check settings for the load balancer target group"
 }
+
+variable "tg_web" {}
+variable "tg_app" {}

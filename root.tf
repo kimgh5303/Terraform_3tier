@@ -40,4 +40,6 @@ module "alb" {
 
   tg_set = var.tg_set
   health_checks = var.health_checks
+  tg_web = var.tg_web
+  tg_app = var.tg_app
 }

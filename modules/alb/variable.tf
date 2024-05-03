@@ -11,5 +11,7 @@ variable "alb_app_sg" {}
 variable "public_subnet_ids" {}
 variable "app_subnet_ids" {}
 
-variable "tg_set" {}
 variable "health_checks" {}
+
+variable "tg_web" {}
+variable "tg_app" {}
