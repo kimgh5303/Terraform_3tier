@@ -14,7 +14,7 @@ resource "aws_subnet" "public_subnets" {
 # Web Subnets--------------------------------
 resource "aws_subnet" "web_subnets" {
   for_each          = var.web_subnets
-  
+
   vpc_id            = aws_vpc.vpc.id
   cidr_block        = each.value["cidr"]
   availability_zone = each.value["zone"]
