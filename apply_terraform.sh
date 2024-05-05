@@ -10,3 +10,6 @@ terraform apply -var-file="terraform.tfvars" -var-file="secret.tfvars" -auto-app
 
 # 특정 모듈만 실행
 # terraform apply -var-file="terraform.tfvars" -var-file="secret.tfvars" -target=module.모듈이름 -auto-approve
+
+# 삭제 명령어
+# terraform destroy -var-file="terraform.tfvars" -var-file="secret.tfvars" -auto-approve
