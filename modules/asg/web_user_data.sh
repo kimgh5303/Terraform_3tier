@@ -63,3 +63,37 @@ EOF
 
 # Restart Nginx to apply changes
 sudo systemctl restart nginx
+
+
+
+# CloudWatch Agent 설치
+sudo yum install -y amazon-cloudwatch-agent
+
+# 에이전트 설정 파일 생성
+cat <<EOF > /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+{
+  "agent": {
+    "metrics_collection_interval": 60,
+    "run_as_user": "cwagent"
+  },
+  "logs": {
+    "logs_collected": {
+      "files": {
+        "collect_list": [
+          {
+            "file_path": "/var/log/nginx/access.log",
+            "log_group_name": "nginx-access-logs",
+            "log_stream_name": "{instance_id}",
+            "timestamp_format": "%d/%b/%Y:%H:%M:%S %z"
+          }
+        ]
+      }
+    }
+  }
+}
+EOF
+
+# IAM 역할이 CloudWatch에 로그를 보낼 권한을 부여했는지 확인하세요.
+
+# CloudWatch Agent 실행
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json -s
