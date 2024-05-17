@@ -23,7 +23,3 @@ resource "aws_db_instance" "rds_db" {
     value               = var.tags.value
   }
 }
-
-
-
-
