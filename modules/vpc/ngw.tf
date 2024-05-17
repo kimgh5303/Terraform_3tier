@@ -8,7 +8,10 @@ resource "aws_eip" "eip" {
 resource "aws_eip" "eip2" {
   domain = "vpc"
   tags = {
-    Name = format("%s-eip-2", var.tags["name"])
+    Name = format(
+      "%s-eip-2",
+      var.tags.value
+    )
   }
 }
 
@@ -33,7 +36,13 @@ resource "aws_nat_gateway" "ngw" {
   subnet_id         = each.value.subnet_id
 
   tags = {
-    Name = format("%s-%s", var.tags["name"], each.key)
+    Name = format(
+      "%s-%s",
+      var.tags.value,
+      element(split("_", each.key), 2)
+    )
+    key                 = var.tags.key
+    value               = var.tags.value
   }
 
   depends_on = [aws_internet_gateway.igw]

@@ -5,7 +5,7 @@ region = "us-west-1"
 tags = {
   key                 = "owner"
   value               = "kgh"
-  name = "owner:kgh"
+  name = "kgh"
 }
 
 az_list = [
