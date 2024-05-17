@@ -15,6 +15,18 @@ resource "aws_security_group" "asg_app_sg" {
   }
 
   dynamic "ingress" {
+    for_each = {https = var.ingress_rule["https"]}
+
+    content {
+        description  = ingress.value["description"]
+        from_port    = ingress.value["from_port"]
+        to_port      = ingress.value["to_port"]
+        protocol     = ingress.value["protocol"]
+        security_groups = [aws_security_group.alb_app_sg.id]
+    }
+  }
+
+  dynamic "ingress" {
     for_each = {http = var.ingress_rule["ssh"]}
 
     content {
