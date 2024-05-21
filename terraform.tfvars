@@ -62,7 +62,7 @@ db_subnets = {
   db_sub_1c = {
     zone = "ap-northeast-2c"
     cidr = "10.10.8.0/24"
-    map_public_ip_on_launch = true
+    map_public_ip_on_launch = false
   }
 }
 
