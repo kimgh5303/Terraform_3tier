@@ -22,7 +22,7 @@ public_subnets = {
     zone = "ap-northeast-2a"
     cidr = "10.10.1.0/24"
   },
-  pub_sub_1b = {
+  pub_sub_1c = {
     zone = "ap-northeast-2c"
     cidr = "10.10.2.0/24"
   }
@@ -34,7 +34,7 @@ web_subnets = {
     zone = "ap-northeast-2a"
     cidr = "10.10.3.0/24"
   },
-  web_sub_1b = {
+  web_sub_1c = {
     zone = "ap-northeast-2c"
     cidr = "10.10.4.0/24"
   }
@@ -46,7 +46,7 @@ app_subnets = {
     zone = "ap-northeast-2a"
     cidr = "10.10.5.0/24"
   },
-  app_sub_1b = {
+  app_sub_1c = {
     zone = "ap-northeast-2c"
     cidr = "10.10.6.0/24"
   }
@@ -59,7 +59,7 @@ db_subnets = {
     cidr = "10.10.7.0/24"
     map_public_ip_on_launch = false
   },
-  db_sub_1b = {
+  db_sub_1c = {
     zone = "ap-northeast-2c"
     cidr = "10.10.8.0/24"
     map_public_ip_on_launch = true
